@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import PokedexPage from './pages/PokedexPage'
 import PokeNamePage from './pages/PokeNamePage'
 import Page404 from './pages/Page404'
+import ProtectedRoutes from './pages/ProtectedRoutes'
 
 function App() {
 
@@ -11,8 +12,12 @@ function App() {
     <div>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/pokedex' element={<PokedexPage />} />
-        <Route path='/pokedex/:name' element={<PokeNamePage />} />
+
+        <Route element={<ProtectedRoutes/>}>
+          <Route path='/pokedex' element={<PokedexPage />} />
+          <Route path='/pokedex/:name' element={<PokeNamePage />} />
+        </Route>
+        
         <Route path='*' element={<Page404 />} />
       </Routes>
     </div>
