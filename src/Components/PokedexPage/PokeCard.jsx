@@ -1,48 +1,52 @@
-import { useEffect } from "react"
-import useFetch from "../../hooks/useFetch"
-import { useNavigate } from "react-router-dom"
+import { useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
+import './styles/PokeCard.css'
 
-const PokeCard = ({url}) => {
-
-    const [pokemon, getSinglePokemon]= useFetch(url)
+const PokeCard = ({ url }) => {
+    const [pokemon, getSinglePokemon] = useFetch(url);
 
     useEffect(() => {
-        getSinglePokemon()
-    }, [])
+    getSinglePokemon();
+    }, []);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-const handleClick = () => {
-        navigate(`/pokedex/${pokemon.name}`)
-}
+    const handleClick = () => {
+    navigate(`/pokedex/${pokemon.name}`);
+    };
+
+    const firstType = pokemon?.types[0].type.name
     return (
-        <article onClick={handleClick}>
-            <header>
-                <img src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
-            </header>
-            <section>
-                <h3>{pokemon?.name}</h3>
-                <ul>
-                    {
-                        pokemon?.types.map(typeInfo =>(
-                            <li key={typeInfo.type.url}>{typeInfo.type.name}</li>
-                        ))
-                    }
-                </ul>
-                <hr />
-                <ul>
-                    {
-                        pokemon?.stats.map(statInfo => (
-                            <li key={statInfo.stat.url}>
-                                <h4>{statInfo.stat.name}</h4>
-                                <span>{statInfo.base_stat}</span>                                
-                            </li>
-                        ))
-                    }
-                </ul>
-            </section>
-        </article>
-    )
-}
+    <article className={`pokecard ${`pokecard ${firstType}-border`}`} onClick={handleClick}>
+        <header className={`pokecard_header ${firstType}-gradient`}>
+        <img
+            className="pokecard_image"
+            src={pokemon?.sprites.other["official-artwork"].front_default}
+            alt=""
+        />
+        </header>
+        <section className="pokecard_body">
+        <h3 className={`pokecard_name ${firstType}-color`}>{pokemon?.name}</h3>
+        <ul className="pokecard_types">
+            {pokemon?.types.map((typeInfo) => (
+            <li className= "pokecard_typename"key={typeInfo.type.url}>{typeInfo.type.name}</li>
+            ))}
+        </ul>
+        <hr className="pokecard_hr"/>
+        <ul className="pokecard_stats">
+            {pokemon?.stats.map((statInfo) => (
+            <li className="pokecard_stat"key={statInfo.stat.url}>
+                <h4 className="pokecard_stat_name">{statInfo.stat.name}</h4>
+                <span className={`pokecard_stat_value ${firstType}-color`}>
+                    {statInfo.base_stat}
+                </span>
+            </li>
+            ))}
+        </ul>
+        </section>
+    </article>
+    );
+};
 
-export default PokeCard
+export default PokeCard;
