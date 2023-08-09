@@ -23,7 +23,7 @@ const SelectType = ({setSelectValue}) => {
             ))
         }
     </select>
-    )
-}
+    );
+};
 
 export default SelectType

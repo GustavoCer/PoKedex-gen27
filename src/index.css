@@ -38,3 +38,9 @@ button {
     border: none;
     cursor: pointer;
 }
+.grids{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-gap: 20px;
+    grid-auto-rows: minmax(300px, auto);
+}

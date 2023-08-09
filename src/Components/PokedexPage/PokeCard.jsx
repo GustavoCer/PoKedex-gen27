@@ -18,7 +18,7 @@ const PokeCard = ({ url }) => {
 
     const firstType = pokemon?.types[0].type.name
     return (
-    <article className={`pokecard ${`pokecard ${firstType}-border`}`} onClick={handleClick}>
+    <article className={`pokecard ${firstType}-border`} onClick={handleClick}>
         <header className={`pokecard_header ${firstType}-gradient`}>
         <img
             className="pokecard_image"

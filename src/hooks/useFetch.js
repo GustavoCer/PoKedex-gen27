@@ -15,7 +15,7 @@ const useFetch = (url) => {
         axios.get(urlType)
         .then(res => {
             const obj = {
-              results: res.data.pokemon.map(e => e.pokemon)
+                results: res.data.pokemon.map(e => e.pokemon)
             }
             setInfoApi(obj)
         })
