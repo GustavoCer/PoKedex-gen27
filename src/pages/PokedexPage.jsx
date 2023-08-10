@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import useFetch from "../hooks/useFetch";
 import { useEffect, useRef, useState } from "react";
-import PokeCard from "../components/pokedexPage/PokeCard";
-import SelectType from "../components/pokedexPage/SelectType";
+import PokeCard from "../Components/pokedexPage/PokeCard";
+import SelectType from "../Components/pokedexPage/SelectType";
 
-const PokedexPage = () => {
+function PokedexPage() {
   const [inputValue, setInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("allPokemons");
   console.log(selectValue);
@@ -40,8 +40,7 @@ const PokedexPage = () => {
         <input
           ref={inputSearch}
           onChange={(e) => setInputValue(e.target.value)}
-          type="text"
-        />
+          type="text" />
         <button>Search</button>
       </form>
       <SelectType setSelectValue={setSelectValue} />
@@ -54,6 +53,6 @@ const PokedexPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default PokedexPage;
